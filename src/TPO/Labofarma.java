@@ -1,5 +1,6 @@
 package TPO;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +10,14 @@ public class Labofarma {
     private List<Laboratorio> laboratorios;
     private List<ProductoQuimico> productosQuimicos;
     private List<Empleado> empleados;
+	private List<Lote> lotes;
 
-    public void crearProductoQuimico(int id, String formula, Date fechaFabricacion, String lote, Date vencimiento) {
+    public ProductoQuimico crearProductoQuimico(int idNumerico, FormulaQuimica formula, String nombreComercial, Date fechaFabricacion, Date fechaVencimiento, String lote) {
         // Implementación del método
+    	
+    	ProductoQuimico producto = new ProductoQuimico( idNumerico, formula, nombreComercial,  fechaFabricacion,  fechaVencimiento,  lote);
+        this.productosQuimicos.add(producto);
+        return producto;
     }
 
     public String calcularVencimientoProducto() {
@@ -19,12 +25,16 @@ public class Labofarma {
         return null;
     }
 
-    public void darAltaLote(List<ProductoQuimico> productosQuimicos, Date fechaFabricacion, Date vencimiento) {
-        // Implementación del método
+    public void darAltaLote(int id, ProductoQuimico tipoProducto, Date fechaFabricacion, Date fechaVencimiento, boolean aprobadoPorLaboratorio, int cantidadProductos) {
+       //Lote lotes = new Lote( id,  tipoProducto,  fechaFabricacion,  fechaVencimiento,  aprobadoPorLaboratorio,  cantidadProductos);
+       
     }
 
-    public void crearSede() {
-        // Implementación del método
+    public void crearSede(String nombre, String provincia) {
+        
+    	Sede sedes = new Sede( nombre,  provincia);
+    	this.sedes.add(sedes);
+    	
     }
 
     public void reservarLaboratorio() {
@@ -50,18 +60,29 @@ public class Labofarma {
         // Implementación del método
     }
 
-    public boolean buscaSede() {
-        // Implementación del método
-        return false;
+    public boolean buscaSede(String provincia) {
+       
+    	for (Sede sede : sedes) {
+            if (sede.getProvincia().equals(provincia)) {
+                return true; // Se encontró la sede
+            }
+        }
+        return false; // No se encontró la sede
+    	
     }
 
-    public Lote crearLote(List<ProductoQuimico> productos) {
-        // Implementación del método
-        return null;
+    public Lote crearLote(int id, ProductoQuimico tipoProducto, Date fechaFabricacion, Date fechaVencimiento, boolean aprobadoPorLaboratorio, int cantidadProductos) {
+        Lote lotes = new Lote( id,  tipoProducto,  fechaFabricacion,  fechaVencimiento,  aprobadoPorLaboratorio,  cantidadProductos);
+        this.lotes.add(lotes);
+        return lotes;
     }
 
     public FormulaQuimica crearFormulaQuimica() {
         // Implementación del método
         return null;
     }
+
+	
+    
+    
 }

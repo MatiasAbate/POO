@@ -1,5 +1,5 @@
 package TPO;
 
-public class Administrativo {
+public class Administrativo extends Empleado{
 
 }
